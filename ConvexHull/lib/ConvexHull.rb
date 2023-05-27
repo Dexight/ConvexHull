@@ -5,20 +5,42 @@ require_relative "ConvexHull/version"
 module ConvexHull
 
   class Error < StandardError; end
-  
+
   def self.jarvis(* points)
-    p0 = points[0]
-    points.each { |p|
-      if p[:x] < p0[:x] || (p[:x] == p0[:x] && p[:y] < p0[:y])
-        p0 = p
-      end
-    }
-    hull = [p0].to_set
-    while true
-      t = p0
-      points.each do |p|
-        if()
+    n = points.length
+  if n < 3
+    return []
+  end
+
+  hull = []
+
+  p0 = 0
+  for i in 1...n
+    if points[i][0] < points[p0][0]
+      p0 = i
+    end
+  end
+
+  p = p0
+  q = nil
+  begin
+    hull << points[p]
+    q = (p + 1) % n
+
+    for i in 0...n
+      orientation =
+      (points[q][1] - points[p][1]) *
+      (points[i][0] - points[q][0]) -
+      (points[q][0] - points[p][0]) *
+      (points[i][1] - points[q][1])
+      if orientation < 0
+        q = i
       end
     end
+
+    p = q
+  end while p != p0
+
+  return hull
   end
 end
