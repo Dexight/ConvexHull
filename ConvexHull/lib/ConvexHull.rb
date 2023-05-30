@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 require 'set'
 require_relative "ConvexHull/version"
+require "test/unit/assertions"
+
+include Test::Unit::Assertions
+
+
 
 module ConvexHull
 
@@ -85,3 +90,17 @@ module ConvexHull
   end
 
 end
+
+
+
+hull1 = ConvexHull::jarvis([1.0, 1.0], [3.0, 3.0], [4.0, 2.0], [2.0, 4.0], [3.0, 1.0]);
+assert_equal hull1, [[1.0, 1.0], [2.0, 4.0], [3.0, 3.0], [4.0, 2.0], [3.0, 1.0]]
+hull =  ConvexHull::jarvis([2,1], [1,4], [3,4], [3,6], [4,3],[5,1], [5,4],[6,6],[7,3]);
+assert_equal [[1, 4], [3, 6], [6, 6], [7, 3], [5, 1], [2, 1]], hull
+assert_equal ConvexHull::jarvis([1, 4]), []
+assert_equal ConvexHull::jarvis([1,1],[0,0]), []
+assert_equal ConvexHull::jarvis([1,1],[0,0],[2,2]),[[0, 0], [2, 2], [1, 1]]
+
+p 'Succesfull Tests!'
+
+

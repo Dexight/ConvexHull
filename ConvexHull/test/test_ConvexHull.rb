@@ -10,4 +10,8 @@ class TestConvexHull < Minitest::Test
   def test_it_does_something_useful
     assert false
   end
+  
+  def test1 
+	assert_equal true, true
+  end
 end
