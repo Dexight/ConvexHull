@@ -101,6 +101,17 @@ assert_equal ConvexHull::jarvis([1, 4]), []
 assert_equal ConvexHull::jarvis([1,1],[0,0]), []
 assert_equal ConvexHull::jarvis([1,1],[0,0],[2,2]),[[0, 0], [2, 2], [1, 1]]
 
+
+hull = ConvexHull::graham([1.0, 1.0], [3.0, 3.0], [4.0, 2.0], [2.0, 4.0], [3.0, 1.0])
+p hull # [[1.0, 1.0], [3.0, 1.0], [4.0, 2.0], [2.0, 4.0]] - что-то пошло не так :) vs [1.0, 1.0], [2.0, 4.0], [3.0, 3.0], [4.0, 2.0], [3.0, 1.0]
+hull = ConvexHull::graham([2,1], [1,4], [3,4], [3,6], [4,3],[5,1], [5,4],[6,6],[7,3])
+p hull # [[2, 1], [5, 1], [7, 3], [6, 6], [3, 6], [1, 4]] vs [1, 4], [3, 6], [6, 6], [7, 3], [5, 1], [2, 1] вроде ок
+hull = ConvexHull::graham([1, 4])
+p hull #[[1, 4], nil]
+hull = ConvexHull::graham([1, 1], [0,0])
+p hull #[[0, 0], [1, 1]]
+hull=ConvexHull::jarvis([1,1],[0,0],[2,2]) 
+p hull #[[0, 0], [2, 2], [1, 1]]
 p 'Succesfull Tests!'
 
 
