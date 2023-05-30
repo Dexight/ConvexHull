@@ -84,7 +84,7 @@ module ConvexHull
     stack.push(sorted[1])
 
     (2..sorted.size-1).each do |i|
-      while stack.size > 1 && orientation(stack[-2], stack[-1], sorted[i]) != 2 && ((sorted[i][0] - stack[-1][0]) / (stack[-2][0] - stack[-1][0]) != (sorted[i][1] - stack[-1][1]) / (stack[-2][1] - stack[-1][1]))
+      while stack.size > 1 && orientation(stack[-2], stack[-1], sorted[i]) != 2
         stack.pop
       end
       stack.push(sorted[i])
