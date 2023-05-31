@@ -6,11 +6,12 @@ require "test/unit/assertions"
 include Test::Unit::Assertions
 
 
-
+# Allows to compute convex hulls with Jarvis march and Graham's scan algorithms
 module ConvexHull
 
   class Error < StandardError; end
 
+  # Auxiliary function, that checks if the received array is in the right format
   def self.check_array_format(arr)
     unless arr.is_a?(Array) && arr.size == 2 &&
       (
@@ -21,6 +22,9 @@ module ConvexHull
     end
   end
   
+  # Computes a convex hull using Jarvis march algorithm
+  # Accepts an array of points as an argument, that is an array of [float, float], [float, int], [int, float] or [int, int]
+  # Returns an array of points, possibly empty, as a result 
   def self.jarvis(* points)
     points.each { |x| check_array_format(x) }
     n = points.length
@@ -59,7 +63,7 @@ module ConvexHull
     end
   end
   
-  
+  # Auxiliary function used in the implementations of algorithms
   def self.orientation(p, q, r)
     val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
     return 0 if val.zero?
@@ -67,7 +71,9 @@ module ConvexHull
     return 2
   end
 
-
+  # Computes a convex hull using Graham's scan algorithm
+  # Accepts an array of points as an argument, that is an array of [float, float], [float, int], [int, float] or [int, int]
+  # Returns an array of points, possibly empty, as a result 
   def self.graham(* points)
     points.each { |x| check_array_format(x) }
 	
